@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySearchTreeTests\BinaryTreeTest.cs" />
+    <Compile Include="BinarySearchTreeTests\Book.cs" />
+    <Compile Include="BinarySearchTreeTests\Ints.cs" />
+    <Compile Include="BinarySearchTreeTests\Point.cs" />
+    <Compile Include="BinarySearchTreeTests\Strings.cs" />
+    <Compile Include="BinaryTree.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queue.cs" />
