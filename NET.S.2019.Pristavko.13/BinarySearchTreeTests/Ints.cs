@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NET.S._2019.Pristavko._13.BinarySearchTreeTests
+﻿namespace NET.S._2019.Pristavko._13.BinarySearchTreeTests
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Ints : IComparer<int>
     {
         public int Compare(int x, int y)
