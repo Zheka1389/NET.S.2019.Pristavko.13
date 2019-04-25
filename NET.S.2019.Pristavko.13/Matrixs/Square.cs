@@ -86,17 +86,7 @@
         {
             return this.size;
         }      
-
-        /// <summary>
-        /// Returns a copy matrix.
-        /// </summary>
-        public T[,] GetMatrix()
-        {
-            T[,] copy = new T[this.container.GetLength(0), this.container.GetLength(1)];
-            Array.Copy(this.container, copy, this.container.GetLength(0) + this.container.GetLength(1));
-            return copy;
-        }       
-
+ 
         /// <summary>
         /// Returns an enumerator that iterates through matrix.
         /// </summary>
