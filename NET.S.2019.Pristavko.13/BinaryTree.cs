@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace NET.S._2019.Pristavko._13
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Binary Search Tree
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <seealso cref="System.Collections.Generic.IEnumerable{T}" />
     public class BinaryTree<T> : IEnumerable<T>
     {
         private Node<T> root;
@@ -22,120 +17,92 @@ namespace NET.S._2019.Pristavko._13
         /// </summary>
         public BinaryTree()
         {
-            root = null;
-            NumOfElements = 0;
-            comparer = Comparer<T>.Default;
+            this.root = null;
+            this.NumOfElements = 0;
+            this.comparer = Comparer<T>.Default;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BinaryTree{T}"/> class.
         /// </summary>
-        /// <param name="comparer">The comparer.</param>
-        public BinaryTree(IComparer<T> comparer) : this()
-        {
-            this.comparer = comparer;
-        }
+        public BinaryTree(IComparer<T> comparer) : this() => this.comparer = comparer;
 
         /// <summary>
         /// Gets the number of elements.
         /// </summary>
-        /// <value>
-        /// The number of elements.
-        /// </value>
         public int NumOfElements { get; private set; }
 
         #region Base Methods
 
-        /// <summary>
-        /// Determines whether [contains] [the specified element].
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <returns>
-        ///   <c>true</c> if [contains] [the specified element]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool Contains(T element)
-        {
-            return Find(element, root) != null;
-        }
+        public bool Contains(T element) => Find(element, root) != null;
 
         /// <summary>
         /// Inserts the specified element.
         /// </summary>
-        /// <param name="element">The element.</param>
         public void Insert(T element)
         {
-            if (root == null)
+            if (this.root == null)
             {
-                root = new Node<T>(element);
-                NumOfElements++;
+                this.root = new Node<T>(element);
+                this.NumOfElements++;
                 return;
             }
 
-            Insert(element, root);
+            Insert(element, this.root);
         }
 
         /// <summary>
         /// Removes the specified element.
         /// </summary>
-        /// <param name="element">The element.</param>
         public void Remove(T element)
         {
-            if (root == null)
+            if (this.root == null)
             {
                 return;
             }
 
-            Remove(element, root);
+            Remove(element, this.root);
         }
         #endregion
 
-        #region Traverse
-
         /// <summary>
-        /// Traverse in the pre order.
+        /// Pre order.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="InvalidOperationException">The tree is empty.</exception>
         public IEnumerable<T> PreOrder()
         {
-            if (root == null)
+            if (this.root == null)
             {
                 throw new InvalidOperationException("The tree is empty.");
             }
 
-            return PreOrder(root);
+            return this.PreOrder(this.root);
         }
 
         /// <summary>
-        /// Traverse in the in order.
+        /// In order.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="InvalidOperationException">The tree is empty.</exception>
         public IEnumerable<T> InOrder()
         {
-            if (root == null)
+            if (this.root == null)
             {
                 throw new InvalidOperationException("The tree is empty.");
             }
 
-            return InOrder(root);
+            return this.InOrder(this.root);
         }
 
         /// <summary>
-        /// Traverse in the post order.
+        /// Post order.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="InvalidOperationException">Tree is empty!</exception>
         public IEnumerable<T> PostOrder()
         {
-            if (ReferenceEquals(root, null))
+            if (ReferenceEquals(this.root, null))
             {
                 throw new InvalidOperationException("Tree is empty!");
             }
 
-            return PostOrder(root);
+            return this.PostOrder(this.root);
         }
-        #endregion
 
         #region Private base methods
         private Node<T> Find(T element, Node<T> node)
@@ -145,63 +112,63 @@ namespace NET.S._2019.Pristavko._13
                 return null;
             }
 
-            if (comparer.Compare(node.Value, element) == 0)
+            if (this.comparer.Compare(node.Value, element) == 0)
             {
                 return node;
             }
 
-            if (comparer.Compare(node.Value, element) > 0)
+            if (this.comparer.Compare(node.Value, element) > 0)
             {
-                return Find(element, node.Left);
+                return this.Find(element, node.Left);
             }
             else
             {
-                return Find(element, node.Right);
+                return this.Find(element, node.Right);
             }
         }
 
         private void Insert(T element, Node<T> node)
         {
-            if (comparer.Compare(node.Value, element) > 0)
+            if (this.comparer.Compare(node.Value, element) > 0)
             {
                 if (node.Left == null)
                 {
                     node.Left = new Node<T>(element);
-                    NumOfElements++;
+                    this.NumOfElements++;
                 }
                 else
                 {
-                    Insert(element, node.Left);
+                    this.Insert(element, node.Left);
                 }
             }
 
-            if (comparer.Compare(node.Value, element) <= 0)
+            if (this.comparer.Compare(node.Value, element) <= 0)
             {
                 if (node.Right == null)
                 {
                     node.Right = new Node<T>(element);
-                    NumOfElements++;
+                    this.NumOfElements++;
                 }
                 else
                 {
-                    Insert(element, node.Right);
+                    this.Insert(element, node.Right);
                 }
             }
         }
 
         private void Remove(T element, Node<T> node)
         {
-            if (comparer.Compare(node.Value, element) > 0)
+            if (this.comparer.Compare(node.Value, element) > 0)
             {
-                Remove(element, node.Left);
+                this.Remove(element, node.Left);
             }
 
-            if (comparer.Compare(node.Value, element) < 0)
+            if (this.comparer.Compare(node.Value, element) < 0)
             {
-                Remove(element, node.Right);
+                this.Remove(element, node.Right);
             }
 
-            if (comparer.Compare(node.Value, element) == 0)
+            if (this.comparer.Compare(node.Value, element) == 0)
             {
                 if (node.Left == null && node.Right == null)
                 {
@@ -213,7 +180,7 @@ namespace NET.S._2019.Pristavko._13
                 {
                     node = node.Right;
                     node.Right = null;
-                    NumOfElements--;
+                    this.NumOfElements--;
                     return;
                 }
 
@@ -221,7 +188,7 @@ namespace NET.S._2019.Pristavko._13
                 {
                     node = node.Left;
                     node.Left = null;
-                    NumOfElements--;
+                    this.NumOfElements--;
                     return;
                 }
 
@@ -229,14 +196,14 @@ namespace NET.S._2019.Pristavko._13
                 {
                     node = node.Right;
                     node.Right = null;
-                    NumOfElements--;
+                    this.NumOfElements--;
                     return;
                 }
                 else
                 {
-                    Node<T> theMostLeft = FindTheMostLeft(node.Right);
+                    Node<T> theMostLeft = this.FindTheMostLeft(node.Right);
                     node.Value = theMostLeft.Value;
-                    Remove(theMostLeft.Value);
+                    this.Remove(theMostLeft.Value);
                 }
             }
         }
@@ -245,7 +212,7 @@ namespace NET.S._2019.Pristavko._13
         {
             if (node.Left != null)
             {
-                FindTheMostLeft(node.Left);
+                this.FindTheMostLeft(node.Left);
             }
 
             return node;
@@ -261,7 +228,7 @@ namespace NET.S._2019.Pristavko._13
 
             if (node.Left != null)
             {
-                foreach (var element in PreOrder(node.Left))
+                foreach (var element in this.PreOrder(node.Left))
                 {
                     yield return element;
                 }
@@ -269,7 +236,7 @@ namespace NET.S._2019.Pristavko._13
 
             if (node.Right != null)
             {
-                foreach (var element in PreOrder(node.Right))
+                foreach (var element in this.PreOrder(node.Right))
                 {
                     yield return element;
                 }
@@ -280,7 +247,7 @@ namespace NET.S._2019.Pristavko._13
         {
             if (node.Left != null)
             {
-                foreach (var element in InOrder(node.Left))
+                foreach (var element in this.InOrder(node.Left))
                 {
                     yield return element;
                 }
@@ -290,7 +257,7 @@ namespace NET.S._2019.Pristavko._13
 
             if (node.Right != null)
             {
-                foreach (var element in InOrder(node.Right))
+                foreach (var element in this.InOrder(node.Right))
                 {
                     yield return element;
                 }
@@ -301,7 +268,7 @@ namespace NET.S._2019.Pristavko._13
         {
             if (node.Left != null)
             {
-                foreach (var element in PostOrder(node.Left))
+                foreach (var element in this.PostOrder(node.Left))
                 {
                     yield return element;
                 }
@@ -309,7 +276,7 @@ namespace NET.S._2019.Pristavko._13
 
             if (node.Right != null)
             {
-                foreach (var element in PostOrder(node.Right))
+                foreach (var element in this.PostOrder(node.Right))
                 {
                     yield return element;
                 }
@@ -318,15 +285,9 @@ namespace NET.S._2019.Pristavko._13
             yield return node.Value;
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return InOrder().GetEnumerator();
-        }
+        public IEnumerator<T> GetEnumerator() => this.InOrder().GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return InOrder().GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => this.InOrder().GetEnumerator();
         #endregion   
     }
 }
