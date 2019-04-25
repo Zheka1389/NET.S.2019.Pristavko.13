@@ -13,9 +13,9 @@
         {
             int[,] matrix = new int[,]
             {
-                { 3, 5, 4},
-                { 5, 6, 8},
-                { 4, 8, 7}
+                { 4, 5, 6},
+                { 2, 3, 4},
+                { 5, 3, 7}
             };
 
             Square<int> square = new Square<int>(matrix);
@@ -23,9 +23,9 @@
 
             int[] expected = new int[]
             {
-                 6, 10, 8,
-                 10, 12, 16,
-                 8, 16, 14
+                 8, 10, 12,
+                 4, 6, 8,
+                 10, 6, 14
             };
 
             var result = square.Add(symmetrical);
@@ -37,9 +37,9 @@
         {
             int[,] param = new int[,]
             {
-                { 3, 5, 4},
-                { 5, 6, 8},
-                { 4, 8, 7}
+                { 4, 5, 6},
+                { 2, 3, 4},
+                { 5, 3, 7}
             };
 
             Square<int> square = new Square<int>(param);
@@ -54,15 +54,15 @@
         {
             int[,] param = new int[,]
             {
-                { 3, 5, 4},
-                { 5, 6, 8},
-                { 4, 8, 7}
+                { 4, 5, 6},
+                { 2, 3, 4},
+                { 5, 3, 7}
             };
 
             int[,] paramSquare = new int[,]
             {
-                { 3, 5 },
-                { 5, 6 }
+                { 4, 5 },
+                { 2, 6 }
             };
 
             Square<int> square = new Square<int>(paramSquare);
